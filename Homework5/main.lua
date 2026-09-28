@@ -1,0 +1,124 @@
+require("L5")
+
+local screenWidth = 1280
+local screenHeight = 720
+local buildingCount = 10
+local buildingWidth = 300
+local buildingHeight = 500
+
+local buildingColor = 255
+local shadowColor = 170
+
+function setup()
+    size(screenWidth, screenHeight)
+    drawBetterBuildings()
+end
+
+function drawBetterBuildings()
+    -- Draw the buildings at random positions
+    local buildingCenterX = screenWidth / 2
+    local buildingCenterY = screenHeight - buildingHeight
+
+    local buildingCenterPosition = buildingCenterX + random(buildingWidth / 2, buildingWidth / 2 + buildingWidth / 4)
+
+    noStroke()
+
+    -- Apply buildingColor
+    fill(buildingColor)
+
+    -- First vertex shape
+    beginShape()
+    -- Starts from top left
+    vertex(buildingCenterX, buildingCenterY)
+    -- Draws to the center (center position will change based on distance from center of screen)
+    vertex(buildingCenterPosition, buildingCenterY - 10)
+    --vertex(buildingCenterX + (buildingWidth / 2), buildingCenterY - 10)
+    -- Draws down from center
+    vertex(buildingCenterPosition, buildingCenterY + buildingHeight)
+    -- Draws to the bottom left
+    vertex(buildingCenterX, buildingCenterY + buildingHeight)
+
+    endShape(CLOSE)
+
+    -- Apply shadowColor
+    fill(shadowColor)
+
+    -- Second vertex shape
+    beginShape()
+    -- Starts from the center
+    vertex(buildingCenterPosition, buildingCenterY - 10)
+    --vertex(buildingCenterX + (buildingWidth / 2), buildingCenterY - 10)
+    -- Draws to the top right
+    vertex(buildingCenterX + buildingWidth, buildingCenterY)
+    -- Draws down from the right
+    vertex(buildingCenterX + buildingWidth, buildingCenterY + buildingHeight)
+    -- Draws to the bottom center
+    vertex(buildingCenterPosition, buildingCenterY + buildingHeight)
+    endShape(CLOSE)
+
+-------------------------
+
+    -- Starts from top left
+    --vertex(buildingCenterX, buildingCenterY)
+    -- Draws to the center
+    --vertex(buildingCenterX + (buildingWidth / 2), buildingCenterY - 10)
+    -- Draws to the top right
+    --vertex(buildingCenterX + buildingWidth, buildingCenterY)
+    -- Draws downward
+    --vertex(buildingCenterX + buildingWidth, buildingCenterY + buildingHeight)
+    -- Draws to the bottom left
+    --vertex(buildingCenterX, buildingCenterY + buildingHeight)
+    -- Back to top left
+    --vertex(buildingCenterX, buildingCenterY)
+    -- Draws to center at the bottom
+    --vertex(buildingCenterX + (buildingWidth / 2), buildingCenterY + buildingHeight)
+    -- Draws up to the center
+    --vertex(buildingCenterX + (buildingWidth / 2), buildingCenterY - 10)
+    -- Diagonal line to bottom left
+    --vertex(buildingCenterX, buildingCenterY + buildingHeight)
+    -- Back to top left
+    --vertex(buildingCenterX, buildingCenterY)
+    -- Draws back to center at the bottom
+    ---vertex(buildingCenterX + (buildingWidth / 2), buildingCenterY + buildingHeight)
+    -- Line to bottom left
+    --vertex(buildingCenterX, buildingCenterY + buildingHeight)
+    
+
+
+
+end
+
+function drawBuildings()
+    for i = 0, buildingCount do
+        -- Draw the buildings at random positions
+        local buildingCenterX = random(screenWidth)
+        local buildingCenterY = random(screenHeight)
+
+        -- The point that the left side connects to
+        local leftBottomSideofBuilding = buildingCenterY + buildingHeight
+
+        strokeWeight(2)
+        fill(255)
+        -- Draw roof line of building.
+        line(buildingCenterX, buildingCenterY, buildingCenterX + buildingWidth, buildingCenterY)
+
+        -- Draw left side of building.
+        line(buildingCenterX, buildingCenterY, buildingCenterX, buildingCenterY + buildingHeight)
+
+        -- Draw right side of building.
+        line(buildingCenterX + buildingWidth, buildingCenterY, buildingCenterX + buildingWidth, buildingCenterY + buildingHeight)
+
+        -- Variable that chooses an X position for the 3D effect line based on the position to the center of the screenWidth.
+        local ThreeDimensionalLineXPosition = 25
+        
+        -- Check if buildingCenterX is on the right side of the screen
+        if buildingCenterX > screenWidth / 2 then
+           ThreeDimensionalLineXPosition = random((buildingWidth / 2) + (buildingWidth / 4), buildingWidth)
+        else
+            ThreeDimensionalLineXPosition = random((buildingWidth / 2) - (buildingWidth / 4), 0)
+        end
+
+        -- Draw line that will make it look 3D based on the position it is compared to the center
+        line(buildingCenterX + ThreeDimensionalLineXPosition, buildingCenterY, buildingCenterX + ThreeDimensionalLineXPosition, buildingCenterY + buildingHeight)
+    end
+end
