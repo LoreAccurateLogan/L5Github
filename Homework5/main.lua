@@ -3,23 +3,38 @@ require("L5")
 local screenWidth = 1280
 local screenHeight = 720
 local buildingCount = 10
-local buildingWidth = 300
-local buildingHeight = 500
+local buildingWidth = 250
+local buildingHeight = 600
 
 local buildingColor = 255
 local shadowColor = 170
 
 function setup()
     size(screenWidth, screenHeight)
-    drawBetterBuildings()
+
+    drawBetterBuildings(730, 850)
+
+    drawBetterBuildings(100, 900)
+    
+    drawBetterBuildings(900, 725)
+
+    drawBetterBuildings(450, 750)
+
+    drawBetterBuildings(700, 900)
+
+    drawBetterBuildings(250, 800)
+    --drawBetterBuildings(850)
+    --drawBetterBuildings(1000)
 end
 
-function drawBetterBuildings()
+function drawBetterBuildings(xPos, yPos)
     -- Draw the buildings at random positions
-    local buildingCenterX = screenWidth / 2
-    local buildingCenterY = screenHeight - buildingHeight
+    local buildingCenterX = xPos
+    local buildingCenterY = yPos - buildingHeight
 
-    local buildingCenterPosition = buildingCenterX + random(buildingWidth / 2, buildingWidth / 2 + buildingWidth / 4)
+    local buildingCenterPosition = buildingCenterX + 75
+    
+    --local buildingCenterPosition = buildingCenterX + random(buildingWidth / 2, buildingWidth / 2 + buildingWidth / 4)
 
     noStroke()
 
@@ -56,6 +71,13 @@ function drawBetterBuildings()
     vertex(buildingCenterPosition, buildingCenterY + buildingHeight)
     endShape(CLOSE)
 
+    -- Plane guidance lights
+    fill(255,0,0)
+    circle(buildingCenterX + buildingWidth, buildingCenterY, 8)
+    circle(buildingCenterX, buildingCenterY, 8)
+    circle(buildingCenterPosition, buildingCenterY - 10, 8)
+
+    
 -------------------------
 
     -- Starts from top left
@@ -86,6 +108,10 @@ function drawBetterBuildings()
 
 
 
+end
+
+function drawWindow()
+    
 end
 
 function drawBuildings()
