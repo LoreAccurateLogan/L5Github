@@ -6,19 +6,24 @@ local buildingCount = 10
 local buildingWidth = 250
 local buildingHeight = 600
 
-local buildingColor = 255
-local shadowColor = 170
+--local buildingColor = (237, 45, 120)
+--local shadowColor = (67, 22, 39)
 
 function setup()
     size(screenWidth, screenHeight)
+    background(27, 30, 33)
 
-    drawBetterBuildings(730, 850)
+    drawBetterBuildings(0, screenHeight + 230) -- 950
 
-    drawBetterBuildings(100, 900)
+    drawBetterBuildings(1100, screenHeight + 230)
+
+    drawBetterBuildings(730, screenHeight + 130)
+
+    drawBetterBuildings(100, screenHeight + 180) -- 900
     
-    drawBetterBuildings(900, 725)
+    drawBetterBuildings(900, screenHeight + 5)
 
-    drawBetterBuildings(450, 750)
+    drawBetterBuildings(450, screenHeight + 30)
 
     drawBetterBuildings(700, 900)
 
@@ -39,7 +44,7 @@ function drawBetterBuildings(xPos, yPos)
     noStroke()
 
     -- Apply buildingColor
-    fill(buildingColor)
+    fill(80, 85, 91)
 
     -- First vertex shape
     beginShape()
@@ -56,7 +61,7 @@ function drawBetterBuildings(xPos, yPos)
     endShape(CLOSE)
 
     -- Apply shadowColor
-    fill(shadowColor)
+    fill(67, 22, 39)
 
     -- Second vertex shape
     beginShape()
