@@ -11,8 +11,39 @@ local buildingHeight = 600
 
 function setup()
     size(screenWidth, screenHeight)
-    background(27, 30, 33)
+    --background(27, 30, 33)
 
+    --drawBetterBuildings(0, screenHeight + 230) -- 950
+
+    --drawBetterBuildings(1100, screenHeight + 230)
+
+    --drawBetterBuildings(730, screenHeight + 130)
+
+    --drawBetterBuildings(100, screenHeight + 180) -- 900
+    
+    --drawBetterBuildings(900, screenHeight + 5)
+
+    --drawBetterBuildings(450, screenHeight + 30)
+
+    --drawBetterBuildings(700, screenHeight + 180)
+
+    --drawBetterBuildings(250, screenHeight + 80)
+    --drawBetterBuildings(850)
+    --drawBetterBuildings(1000)
+end
+
+function draw()
+    background(27, 30, 33)
+    fill(255)
+
+    -- Draw moon that follows mouse
+    circle(mouseX, mouseY, 70)
+    fill(200)
+    circle(mouseX + 15, mouseY - 15, 25)
+    circle(mouseX - 15, mouseY + 10, 30)
+    circle(mouseX + 17, mouseY + 10, 10)
+
+    -- Draw buildings
     drawBetterBuildings(0, screenHeight + 230) -- 950
 
     drawBetterBuildings(1100, screenHeight + 230)
@@ -25,11 +56,9 @@ function setup()
 
     drawBetterBuildings(450, screenHeight + 30)
 
-    drawBetterBuildings(700, 900)
+    drawBetterBuildings(700, screenHeight + 180)
 
-    drawBetterBuildings(250, 800)
-    --drawBetterBuildings(850)
-    --drawBetterBuildings(1000)
+    drawBetterBuildings(250, screenHeight + 80)
 end
 
 function drawBetterBuildings(xPos, yPos)
@@ -115,10 +144,8 @@ function drawBetterBuildings(xPos, yPos)
 
 end
 
-function drawWindow()
-    
-end
 
+-- Old way I was drawing the buildings
 function drawBuildings()
     for i = 0, buildingCount do
         -- Draw the buildings at random positions
