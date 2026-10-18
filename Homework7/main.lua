@@ -41,14 +41,29 @@ function setup()
 
     -- Draw right design
     push()
-    rectMode(CENTER)
+    noStroke()
+    rectMode(CORNER)
+    ellipseMode(CORNER)
     
-    translate(((width/2) + (width/4)) - 25, height / 2)
-    scale(2, 2)
+    translate(((width/2) + (width/4)) - 200, height / 2 - 125)
+
+    scale(4, 4)
 
     for i = 1, squareCount do
-        square(squareXPosition * squareOffset,squareRow,20)
         squareXPosition = squareXPosition + 1
+
+        -- Draw square every even number
+        if i % 2 == 0 then
+            fill(0, 120, 191)
+            square(squareXPosition * squareOffset,squareRow,20)    
+        
+        -- Draw circle every odd number
+        else
+            fill(255, 72, 176)
+            circle(squareXPosition * squareOffset, squareRow, 20)
+        end
+
+        -- If i is divisible by three then start a new row
         if i % 3 == 0 then
             squareXPosition = 0
             squareRow = squareRow + 20
