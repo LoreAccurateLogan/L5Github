@@ -63,6 +63,7 @@ end
 
 function draw()
     background(255)
+    image(loadImage("assets/People/holland.png"), screenSize / 2, screenSize / 2, screenSize, screenSize)
 
     textFont(font)
     textSize(20)
