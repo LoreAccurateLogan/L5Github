@@ -66,7 +66,7 @@ function drawOuterLayer()
         push()
         rectMode(CENTER)
         --translate(screenSize / 2, screenSize / 2)
-        
+
         square(o.x, o.y, o.s)
 
         pop()
@@ -119,8 +119,8 @@ function setPositionBasedOnCenter(i, centerPos)
         currentX = centerPos + offset
         currentY = centerPos + offset
     end
-
 end
+
 
 function drawInnerLayer()
 
