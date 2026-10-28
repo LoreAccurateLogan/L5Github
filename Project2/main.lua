@@ -5,8 +5,12 @@ local screenSize = 500
 local objectAmount = 9
 
 local offset = 180
+local offsetPositiveNegative = true
+
 local currentX = 0
 local currentY = 0
+
+local eyeY = -15
 
 local patternType = random(1, 2)
 -- Patterns: 
@@ -14,7 +18,7 @@ local patternType = random(1, 2)
 -- 2 - Radial
 
 -- Shape used in the pattern
-local patternShape = random(1, 3)
+local patternShape = round(random(1, 2))
 -- 1 = Square
 -- 2 = Circle
 -- 3 = Triangle
@@ -29,19 +33,43 @@ local centerObjectTable = {}
 
 function setup()
     size(screenSize, screenSize)
-    
+
+end
+
+function draw()
     -- Create and add Outer Layer Objects to outerObjectTable
     createOuterLayerObjects()
     drawOuterLayer()
-
+    drawFace()
     image(borderImage, 0, 0)
+
+    fill(0)
+    text(""..offset, 30, 30, 60)
+    fill(255)
 end
 
 function drawFace()
     push()
+
     -- Set translate to screen center
     translate(screenSize/2, screenSize/2)
-    circle(-25, -25, 10)
+    fill(255)
+
+    -- Left eye
+    circle(-35, eyeY, 40)
+    fill(0)
+    circle(-35, eyeY, 30)
+
+    -- Right eye
+    fill(255)
+    circle(35, eyeY, 40)
+    fill(0)
+    circle(35, eyeY, 30)
+
+    -- Mouth
+    fill(255)
+    strokeWeight(5)
+    curve(-30, -10, -10, 0, 10, 0, 30, -10)
 
     pop()
 end
@@ -78,11 +106,21 @@ function drawOuterLayer()
         o.y = currentY
 
         push()
+        fill(0)
         rectMode(CENTER)
         --translate(screenSize / 2, screenSize / 2)
 
         -- choose and draw the pattern here.
-        square(o.x, o.y, o.s)
+        if patternShape == 1 then
+            square(o.x, o.y, o.s)
+        end
+
+        if patternShape == 2 then
+            circle(o.x, o.y, o.s)    
+        end
+
+        
+        
 
         pop()
         currentX = currentX + offset
