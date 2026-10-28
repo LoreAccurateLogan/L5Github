@@ -13,6 +13,12 @@ local patternType = random(1, 2)
 -- 1 - Uniform
 -- 2 - Radial
 
+-- Shape used in the pattern
+local patternShape = random(1, 3)
+-- 1 = Square
+-- 2 = Circle
+-- 3 = Triangle
+
 -- Images
 local borderImage = loadImage("assets/borderCircle.png")
 
@@ -31,11 +37,6 @@ function setup()
     image(borderImage, 0, 0)
 end
 
-function draw()
-    drawInnerLayer()
-    drawCenter()
-end
-
 function createOuterLayerObjects()
     for i = 1, objectAmount do
         -- Create Object
@@ -50,15 +51,19 @@ function createOuterLayerObjects()
     end
 end
 
+
+
 function drawOuterLayer()
     for i=1, #outerObjectTable do
         local o = outerObjectTable[i]
 
+        -- Make new row when i % 3
         if i % 3 == 1 then
             currentX = 0
             currentY = currentY + offset
         end
 
+        -- Set the position based on the center for the current x and current y
         setPositionBasedOnCenter(i, screenSize / 2)
         o.x = currentX
         o.y = currentY
@@ -67,6 +72,7 @@ function drawOuterLayer()
         rectMode(CENTER)
         --translate(screenSize / 2, screenSize / 2)
 
+        -- choose and draw the pattern here.
         square(o.x, o.y, o.s)
 
         pop()
@@ -119,13 +125,4 @@ function setPositionBasedOnCenter(i, centerPos)
         currentX = centerPos + offset
         currentY = centerPos + offset
     end
-end
-
-
-function drawInnerLayer()
-
-end
-
-function drawCenter()
-
 end
