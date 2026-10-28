@@ -37,6 +37,15 @@ function setup()
     image(borderImage, 0, 0)
 end
 
+function drawFace()
+    push()
+    -- Set translate to screen center
+    translate(screenSize/2, screenSize/2)
+    circle(-25, -25, 10)
+
+    pop()
+end
+
 function createOuterLayerObjects()
     for i = 1, objectAmount do
         -- Create Object
